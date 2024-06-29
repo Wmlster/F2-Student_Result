@@ -1395,3 +1395,78 @@ function f3() {
 
   show_students_data(sort_marks_increasing);
 }
+
+// sort by passing
+
+let button4 = document.getElementById("btn-4");
+button4.addEventListener("click", f4);
+
+function f4() {
+  function passing(element) {
+    if (element.passing == true) {
+      return element;
+    }
+  }
+
+  let pass_students = students_data.filter(passing);
+
+  let getting_table = document.getElementById("table_tds");
+  getting_table.remove();
+
+  show_students_data(pass_students);
+}
+
+// sort by class in ascending order
+
+let button5 = document.getElementById("btn-5");
+button5.addEventListener("click", f5);
+
+function f5() {
+  function sort_by_class_increasing(a, b) {
+    if (a.class > b.class) return a.class - b.class;
+    return a.class - b.class;
+  }
+
+  let class_increasing = students_data.sort(sort_by_class_increasing);
+
+  let getting_table = document.getElementById("table_tds");
+  getting_table.remove();
+
+  show_students_data(class_increasing);
+}
+
+// show 2 tables, one containing all female students and the other containing all male students
+
+let button6 = document.getElementById("btn-6");
+button6.addEventListener("click", f5);
+
+function f5() {
+  function male_only(element) {
+    if (element.gender == "Male") {
+      return element;
+    }
+  }
+
+  function female_only(element) {
+    if (element.gender == "Female") {
+      return element;
+    }
+  }
+
+  function others_only(element) {
+    if (element.gender != "Female" && element.gender != "Male") {
+      return element;
+    }
+  }
+
+  let male_data = students_data.filter(male_only);
+  let female_data = students_data.filter(female_only);
+  let others_data = students_data.filter(others_only);
+
+  let getting_table = document.getElementById("table_tds");
+  getting_table.remove();
+
+  show_students_data(male_data);
+  show_students_data(female_data);
+  show_students_data(others_data);
+}
